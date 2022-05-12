@@ -58,9 +58,7 @@ Study its functionality and also inspect the Console, the Network tab and the El
 - The coordinates of each square of the grid are as follows:
 
   ```js
-    (1, 1) (2, 1) (3, 1)
-    (1, 2) (2, 2) (3, 2)
-    (1, 3) (2, 3) (3, 3)
+  (1, 1)(2, 1)(3, 1)(1, 2)(2, 2)(3, 2)(1, 3)(2, 3)(3, 3);
   ```
 
 ### MVP 1, The Grid - Short Explanation
@@ -88,23 +86,29 @@ Study its functionality and also inspect the Console, the Network tab and the El
 
   ```js
   // 2D arrays or matrices are typical structures used to represent grids:
-  [[null, null, null], [null, "B", null], [null, null, null]]
-
-  // A plain 1D array is a simpler structure that offers better performance for huge grids:
-  [null, null, null, null, "B", null, null, null, null]
+  [
+    [null, null, null],
+    [null, "B", null],
+    [null, null, null],
+  ][
+    // A plain 1D array is a simpler structure that offers better performance for huge grids:
+    (null, null, null, null, "B", null, null, null, null)
+  ];
 
   // A string also works, but strings in JS are immutable, which can be inconvenient:
-  "xxxxBxxxx"
+  ("xxxxBxxxx");
   ```
 
 - Try not to use a separate state to hold the current coordinates. The coordinates should be derived from the state of the grid:
 
   ```js
   // Using a "getCoordinates" helper function you could build:
-  const [x, y] = getCoordinates(grid)
-  console.log(`(${x}, ${y})`) // (1, 2)
+  const [x, y] = getCoordinates(grid);
+  console.log(`(${x}, ${y})`); // (1, 2)
   ```
 
 - "Product" works hard designing the messages: we must reproduce them faithfully, down to the last comma.
 - If you start with Functional, don't switch to Class-Based until Functional is passing all its tests (and vice versa).
 - If the direction of the `y` axis surprises you, know that elements in HTML also have their origin of coordinates on their top-left corner.
+
+//hehehe
