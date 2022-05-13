@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 const initialState = {
   coordinate: { x: 2, y: 2 },
@@ -8,6 +9,28 @@ const initialState = {
 };
 export default class AppClass extends React.Component {
   state = initialState;
+
+  onChange = (e) => {
+    const { value } = e.target;
+    this.setState({ ...this, state, email: value });
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const newPayload = {
+      x: this.state.coordinate.x,
+      y: this.state.coordinate.y,
+      steps: this.state.steps,
+      email: this.state.email,
+    };
+    axios
+      .post(`http://localhost:9000/api/result`, newPayload)
+      .then((res) => {
+        this.setState({ ...this.state, message:res.data.message, email:''   });
+      })
+      .catch((err) => {this.setState({ ...this.state, message:err.response.data.message   }
+      });
+  };
   render() {
     const { className } = this.props;
     return (
@@ -43,8 +66,14 @@ export default class AppClass extends React.Component {
           <button id="down">DOWN</button>
           <button id="reset">reset</button>
         </div>
-        <form>
-          <input id="email" type="email" placeholder="type email"></input>
+        <form onSubmit={this.onSubmit}>
+          <input
+            id="email"
+            type="email"
+            onChange={this.onChange}
+            value={this.state.email}
+            placeholder="type email"
+          ></input>
           <input id="submit" type="submit"></input>
         </form>
       </div>
