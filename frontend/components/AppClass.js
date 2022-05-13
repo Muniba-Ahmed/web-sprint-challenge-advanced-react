@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
   coordinate: { x: 2, y: 2 },
-  steps: "",
+  steps: 0,
   email: "",
   message: "",
 };
@@ -12,7 +12,7 @@ export default class AppClass extends React.Component {
 
   onChange = (e) => {
     const { value } = e.target;
-    this.setState({ ...this, state, email: value });
+    this.setState({ ...this.state, email: value });
   };
 
   onSubmit = (e) => {
@@ -49,6 +49,64 @@ export default class AppClass extends React.Component {
     }
   };
 
+  clickRight = () => {
+    if (this.state.coordinate.x < 3) {
+      this.setState({
+        ...this.state,
+        steps: this.state.steps + 1,
+        coordinate: {
+          ...this.state.coordinate,
+          x: this.state.coordinate.x + 1,
+        },
+        message: "",
+      });
+    } else {
+      this.setState({ ...this.state, message: "You can't go right" });
+    }
+  };
+
+  clickUp = () => {
+    if (this.state.coordinate.y > 1) {
+      this.setState({
+        ...this.state,
+        steps: this.state.steps + 1,
+        coordinate: {
+          ...this.state.coordinate,
+          y: this.state.coordinate.y - 1,
+        },
+        message: "",
+      });
+    } else {
+      this.setState({ ...this.state, message: "You can't go up" });
+    }
+  };
+
+  clickDown = () => {
+    if (this.state.coordinate.y < 3) {
+      this.setState({
+        ...this.state,
+        steps: this.state.steps + 1,
+        coordinate: {
+          ...this.state.coordinate,
+          y: this.state.coordinate.y + 1,
+        },
+        message: "",
+      });
+    } else {
+      this.setState({ ...this.state, message: "You can't go down" });
+    }
+  };
+
+  clickReset = () => {
+    this.setState({
+      ...this.state,
+      coordinate: { x: 2, y: 2 },
+      steps: 0,
+      email: "",
+      message: "",
+    });
+  };
+
   render() {
     const { className } = this.props;
     return (
@@ -63,16 +121,113 @@ export default class AppClass extends React.Component {
           </h3>
         </div>
         <div id="grid">
-          {}
-          <div className="square"></div>
-          <div className="square"></div>
+          <div
+            className={`${
+              this.state.coordinate.x === 1 && this.state.coordinate.y === 1
+                ? "square active"
+                : "square"
+            }`}
+          >
+            {this.state.coordinate.x === 1 && this.state.coordinate.y === 1
+              ? "B"
+              : ""}
+          </div>
+          <div
+            className={`${
+              this.state.coordinate.x === 2 && this.state.coordinate.y === 1
+                ? "square active"
+                : "square"
+            }`}
+          >
+            {this.state.coordinate.x === 2 && this.state.coordinate.y === 1
+              ? "B"
+              : ""}
+          </div>
+          <div
+            className={`${
+              this.state.coordinate.x === 3 && this.state.coordinate.y === 1
+                ? "square active"
+                : "square"
+            }`}
+          >
+            {this.state.coordinate.x === 3 && this.state.coordinate.y === 1
+              ? "B"
+              : ""}
+          </div>
+          <div
+            className={`${
+              this.state.coordinate.x === 1 && this.state.coordinate.y === 2
+                ? "square active"
+                : "square"
+            }`}
+          >
+            {this.state.coordinate.x === 1 && this.state.coordinate.y === 2
+              ? "B"
+              : ""}
+          </div>
+          <div
+            className={`${
+              this.state.coordinate.x === 2 && this.state.coordinate.y === 2
+                ? "square active"
+                : "square"
+            }`}
+          >
+            {this.state.coordinate.x === 2 && this.state.coordinate.y === 2
+              ? "B"
+              : ""}
+          </div>
+          <div
+            className={`${
+              this.state.coordinate.x === 3 && this.state.coordinate.y === 2
+                ? "square active"
+                : "square"
+            }`}
+          >
+            {this.state.coordinate.x === 3 && this.state.coordinate.y === 2
+              ? "B"
+              : ""}
+          </div>
+          <div
+            className={`${
+              this.state.coordinate.x === 1 && this.state.coordinate.y === 3
+                ? "square active"
+                : "square"
+            }`}
+          >
+            {this.state.coordinate.x === 1 && this.state.coordinate.y === 3
+              ? "B"
+              : ""}
+          </div>
+          <div
+            className={`${
+              this.state.coordinate.x === 2 && this.state.coordinate.y === 3
+                ? "square active"
+                : "square"
+            }`}
+          >
+            {this.state.coordinate.x === 2 && this.state.coordinate.y === 3
+              ? "B"
+              : ""}
+          </div>
+          <div
+            className={`${
+              this.state.coordinate.x === 3 && this.state.coordinate.y === 3
+                ? "square active"
+                : "square"
+            }`}
+          >
+            {this.state.coordinate.x === 3 && this.state.coordinate.y === 3
+              ? "B"
+              : ""}
+          </div>
+          {/* <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
           <div className="square active">B</div>
           <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
-          <div className="square"></div>
+          <div className="square"></div> */}
         </div>
         <div className="info">
           <h3 id="message">{this.state.message}</h3>
@@ -81,10 +236,18 @@ export default class AppClass extends React.Component {
           <button id="left" onClick={this.clickLeft}>
             LEFT
           </button>
-          <button id="up">UP</button>
-          <button id="right">RIGHT</button>
-          <button id="down">DOWN</button>
-          <button id="reset">reset</button>
+          <button id="up" onClick={this.clickUp}>
+            UP
+          </button>
+          <button id="right" onClick={this.clickRight}>
+            RIGHT
+          </button>
+          <button id="down" onClick={this.clickDown}>
+            DOWN
+          </button>
+          <button id="reset" onClick={this.clickReset}>
+            reset
+          </button>
         </div>
         <form onSubmit={this.onSubmit}>
           <input
