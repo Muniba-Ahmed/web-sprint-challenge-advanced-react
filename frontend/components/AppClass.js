@@ -26,18 +26,36 @@ export default class AppClass extends React.Component {
     axios
       .post(`http://localhost:9000/api/result`, newPayload)
       .then((res) => {
-        this.setState({ ...this.state, message:res.data.message, email:''   });
+        this.setState({ ...this.state, message: res.data.message, email: "" });
       })
-      .catch((err) => {this.setState({ ...this.state, message:err.response.data.message   }
+      .catch((err) => {
+        this.setState({ ...this.state, message: err.response.data.message });
       });
   };
+
+  clickLeft = () => {
+    if (this.state.coordinate.x > 1) {
+      this.setState({
+        ...this.state,
+        steps: this.state.steps + 1,
+        coordinate: {
+          ...this.state.coordinate,
+          x: this.state.coordinate.x - 1,
+        },
+        message: "",
+      });
+    } else {
+      this.setState({ ...this.state, message: "You can't go left" });
+    }
+  };
+
   render() {
     const { className } = this.props;
     return (
       <div id="wrapper" className={className}>
         <div className="info">
           <h3 id="coordinates">
-            {`Coordinates (${this.state.coordinate.x}, ${this.state.coordinate.y}`}
+            {`Coordinates (${this.state.coordinate.x}, ${this.state.coordinate.y})`}
           </h3>
           <h3 id="steps">
             You moved {this.state.steps}{" "}
@@ -46,7 +64,7 @@ export default class AppClass extends React.Component {
         </div>
         <div id="grid">
           {}
-          {/* <div className="square"></div>
+          <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
@@ -54,13 +72,15 @@ export default class AppClass extends React.Component {
           <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
-          <div className="square"></div> */}
+          <div className="square"></div>
         </div>
         <div className="info">
           <h3 id="message">{this.state.message}</h3>
         </div>
         <div id="keypad">
-          <button id="left">LEFT</button>
+          <button id="left" onClick={this.clickLeft}>
+            LEFT
+          </button>
           <button id="up">UP</button>
           <button id="right">RIGHT</button>
           <button id="down">DOWN</button>
