@@ -1,16 +1,29 @@
-import React from 'react'
+import React from "react";
 
+const initialState = {
+  coordinate: { x: 2, y: 2 },
+  steps: "",
+  email: "",
+  message: "",
+};
 export default class AppClass extends React.Component {
+  state = initialState;
   render() {
-    const { className } = this.props
+    const { className } = this.props;
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">Coordinates (2, 2)</h3>
-          <h3 id="steps">You moved 0 times</h3>
+          <h3 id="coordinates">
+            {`Coordinates (${this.state.coordinate.x}, ${this.state.coordinate.y}`}
+          </h3>
+          <h3 id="steps">
+            You moved {this.state.steps}{" "}
+            {this.state.steps === 1 ? "time" : "times"}
+          </h3>
         </div>
         <div id="grid">
-          <div className="square"></div>
+          {}
+          {/* <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
@@ -18,10 +31,10 @@ export default class AppClass extends React.Component {
           <div className="square"></div>
           <div className="square"></div>
           <div className="square"></div>
-          <div className="square"></div>
+          <div className="square"></div> */}
         </div>
         <div className="info">
-          <h3 id="message"></h3>
+          <h3 id="message">{this.state.message}</h3>
         </div>
         <div id="keypad">
           <button id="left">LEFT</button>
@@ -35,6 +48,6 @@ export default class AppClass extends React.Component {
           <input id="submit" type="submit"></input>
         </form>
       </div>
-    )
+    );
   }
 }
