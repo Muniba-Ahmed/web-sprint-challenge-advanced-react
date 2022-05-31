@@ -30,6 +30,53 @@ export default function AppFunctional(props) {
         setMessage(err.response.data.message);
       });
   };
+
+  const clickLeft = () => {
+    if (coordinate.x > 1) {
+      setSteps(steps + 1);
+      setCoordinate({ ...coordinate, x: coordinate.x - 1 });
+      setMessage("");
+    } else {
+      setMessage("You can't go left");
+    }
+  };
+
+  const clickRight = () => {
+    if (coordinate.x < 3) {
+      setSteps(steps + 1);
+      setCoordinate({ ...coordinate, x: coordinate.x + 1 });
+      setMessage("");
+    } else {
+      setMessage("You can't go right");
+    }
+  };
+
+  const clickUp = () => {
+    if (coordinate.y > 1) {
+      setSteps(steps + 1);
+      setCoordinate({ ...coordinate, y: coordinate.y - 1 });
+      setMessage("");
+    } else {
+      setMessage("You can't go up");
+    }
+  };
+
+  const clickDown = () => {
+    if (coordinate.y < 3) {
+      setSteps(steps + 1);
+      setCoordinate({ ...coordinate, y: coordinate.y + 1 });
+      setMessage("");
+    } else {
+      setMessage("You can't go down");
+    }
+  };
+
+  const clickReset = () => {
+    setCoordinate({ x: 2, y: 2 });
+    setSteps(0);
+    setMessage("");
+    setEmail("");
+  };
   return (
     <div id="wrapper" className={props.className}>
       <div className="info">
@@ -39,25 +86,107 @@ export default function AppFunctional(props) {
         </h3>
       </div>
       <div id="grid">
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square active">B</div>
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square"></div>
+        <div
+          className={`${
+            coordinate.x === 1 && coordinate.y === 1
+              ? "square active"
+              : "square"
+          }`}
+        >
+          {coordinate.x === 1 && coordinate.y === 1 ? "B" : ""}
+        </div>
+        <div
+          className={`${
+            coordinate.x === 2 && coordinate.y === 1
+              ? "square active"
+              : "square"
+          }`}
+        >
+          {coordinate.x === 2 && coordinate.y === 1 ? "B" : ""}
+        </div>
+        <div
+          className={`${
+            coordinate.x === 3 && coordinate.y === 1
+              ? "square active"
+              : "square"
+          }`}
+        >
+          {coordinate.x === 3 && coordinate.y === 1 ? "B" : ""}
+        </div>
+        <div
+          className={`${
+            coordinate.x === 1 && coordinate.y === 2
+              ? "square active"
+              : "square"
+          }`}
+        >
+          {coordinate.x === 1 && coordinate.y === 2 ? "B" : ""}
+        </div>
+        <div
+          className={`${
+            coordinate.x === 2 && coordinate.y === 2
+              ? "square active"
+              : "square"
+          }`}
+        >
+          {coordinate.x === 2 && coordinate.y === 2 ? "B" : ""}
+        </div>
+        <div
+          className={`${
+            coordinate.x === 3 && coordinate.y === 2
+              ? "square active"
+              : "square"
+          }`}
+        >
+          {coordinate.x === 3 && coordinate.y === 2 ? "B" : ""}
+        </div>
+        <div
+          className={`${
+            coordinate.x === 1 && coordinate.y === 3
+              ? "square active"
+              : "square"
+          }`}
+        >
+          {coordinate.x === 1 && coordinate.y === 3 ? "B" : ""}
+        </div>
+        <div
+          className={`${
+            coordinate.x === 2 && coordinate.y === 3
+              ? "square active"
+              : "square"
+          }`}
+        >
+          {coordinate.x === 2 && coordinate.y === 3 ? "B" : ""}
+        </div>
+        <div
+          className={`${
+            coordinate.x === 3 && coordinate.y === 3
+              ? "square active"
+              : "square"
+          }`}
+        >
+          {coordinate.x === 3 && coordinate.y === 3 ? "B" : ""}
+        </div>
       </div>
       <div className="info">
-        <h3 id="message">{message} </h3>
+        <h3 id="message">{message}</h3>
       </div>
       <div id="keypad">
-        <button id="left">LEFT</button>
-        <button id="up">UP</button>
-        <button id="right">RIGHT</button>
-        <button id="down">DOWN</button>
-        <button id="reset">reset</button>
+        <button id="left" onClick={clickLeft}>
+          LEFT
+        </button>
+        <button id="up" onClick={clickUp}>
+          UP
+        </button>
+        <button id="right" onClick={clickRight}>
+          RIGHT
+        </button>
+        <button id="down" onClick={clickDown}>
+          DOWN
+        </button>
+        <button id="reset" onClick={clickReset}>
+          reset
+        </button>
       </div>
       <form onSubmit={onSubmit}>
         <input

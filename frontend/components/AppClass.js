@@ -128,7 +128,7 @@ export default class AppClass extends React.Component {
                 : "square"
             }`}
           >
-            {this.state.coordinate.x === 1 && this.state.coordinate === 1
+            {this.state.coordinate.x === 1 && this.state.coordinate.y === 1
               ? "B"
               : ""}
           </div>
@@ -139,8 +139,7 @@ export default class AppClass extends React.Component {
                 : "square"
             }`}
           >
-            {" "}
-            {this.state.coordinate.x === 2 && this.state.coordinate === 1
+            {this.state.coordinate.x === 2 && this.state.coordinate.y === 1
               ? "B"
               : ""}
           </div>
@@ -221,8 +220,17 @@ export default class AppClass extends React.Component {
               ? "B"
               : ""}
           </div>
+          {/* <div className={`${this.state.coordinate.x === 1 && this.state.coordinate.y === 1? "square active": "square"}`}>{this.state.coordinate.x === 1 && this.state.coordinate === 1? "B": ""}</div>
+          <div className={`${this.state.coordinate.x === 2 && this.state.coordinate.y === 1? "square active": "square" }`}>{this.state.coordinate.x === 2 && this.state.coordinate === 1? "B": ""}</div>
+          <div className={`${this.state.coordinate.x === 3 && this.state.coordinate.y === 1? "square active": "square"}`}>{this.state.coordinate.x === 3 && this.state.coordinate.y === 1? "B": ""}</div>
+          <div className={`${this.state.coordinate.x === 1 && this.state.coordinate.y === 2? "square active": "square"}`}>{this.state.coordinate.x === 1 && this.state.coordinate.y === 2? "B": ""}</div>
+          <div className={`${this.state.coordinate.x === 2 && this.state.coordinate.y === 2? "square active": "square"}`}>{this.state.coordinate.x === 2 && this.state.coordinate.y === 2? "B": ""}</div>
+          <div className={`${this.state.coordinate.x === 3 && this.state.coordinate.y === 2? "square active": "square"}`}>{this.state.coordinate.x === 3 && this.state.coordinate.y === 2 ? "B": ""}</div>
+          <div className={`${this.state.coordinate.x === 1 && this.state.coordinate.y === 3? "square active": "square"}`}>{this.state.coordinate.x === 1 && this.state.coordinate.y === 3? "B": ""}</div>
+          <div className={`${this.state.coordinate.x === 2 && this.state.coordinate.y === 3? "square active": "square" }`}>{this.state.coordinate.x === 2 && this.state.coordinate.y === 3? "B": ""}</div>
+          <div className={`${this.state.coordinate.x === 3 && this.state.coordinate.y === 3? "square active": "square"}`}>{this.state.coordinate.x === 3 && this.state.coordinate.y === 3? "B": ""}</div>
+          {/* <div className="square"></div> */}
           {/* <div className="square"></div>
-          <div className="square"></div>
           <div className="square"></div>
           <div className="square active">B</div>
           <div className="square"></div>
